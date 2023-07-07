@@ -34,14 +34,14 @@ int main( int argc, char *argv[]){
     SDL_Rect intersection;
 
     SDL_IntersectRect(&rect, &rect2, &intersection); //Basic Collision detection
-
+    /*
     std::vector<SDL_Rect> rv; //SDL_Point does not work
     for(int i =0; i < 100; i++){
         //rv.emplace_back(rand()% WIDTH, rand() %HEIGHT);
-        rv.push_back(SDL_Rect(rand()% WIDTH, rand() % HEIGHT, 10, 10));
+        rv.emplace_back(rand()% WIDTH, rand() % HEIGHT, 10, 10);
     }
     SDL_RenderDrawRects(renderer, rv.data(), rv.size());
-
+    */
 
     SDL_RenderDrawRect(renderer, &rect);
     SDL_RenderDrawRect(renderer, &rect2);
