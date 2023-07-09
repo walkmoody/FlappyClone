@@ -5,6 +5,8 @@
 const int WIDTH = 1080;
 const int HEIGHT = 720;
 
+//g++ -I src/include -L src/lib -o main main.cpp -lmingw32 -lSDL2main -lSDL2
+
 int main( int argc, char *argv[]){
 
     SDL_Window* window = nullptr; //SDL_CreateWindow("new Test", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_ALLOW_HIGHDPI) ; // change window name here, CHANGE STARTING POS HERE
