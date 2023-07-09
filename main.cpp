@@ -31,6 +31,13 @@ int main( int argc, char *argv[]){
     rect2.y = 50;
     rect2.x = 50;
 
+    SDL_Rect rect3;
+    rect2.w = 100;
+    rect2.h = 100;
+    rect2.y = 700;
+    rect2.x = 400;
+
+
     SDL_Rect intersection;
 
     SDL_IntersectRect(&rect, &rect2, &intersection); //Basic Collision detection
@@ -45,6 +52,7 @@ int main( int argc, char *argv[]){
 
     SDL_RenderDrawRect(renderer, &rect);
     SDL_RenderDrawRect(renderer, &rect2);
+    SDL_RenderDrawRect(renderer, &rect3);
     SDL_SetRenderDrawColor(renderer,255,0,0,255);
     SDL_RenderFillRect(renderer, &intersection);
 
