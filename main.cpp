@@ -2,8 +2,8 @@
 #include <SDL2/SDL.h>
 #include <vector>
 
-const int WIDTH = 1080;
-const int HEIGHT = 720;
+const int WIDTH = 720;
+const int HEIGHT = 560;
 
 //g++ -I src/include -L src/lib -o main main.cpp -lmingw32 -lSDL2main -lSDL2
 
