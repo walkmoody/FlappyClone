@@ -54,7 +54,7 @@ int main( int argc, char *argv[]){
 
     SDL_RenderDrawRect(renderer, &rect);
     SDL_RenderDrawRect(renderer, &rect2);
-    SDL_RenderDrawRect(renderer, &rect3);
+    //SDL_RenderDrawRect(renderer, &rect3);
     SDL_SetRenderDrawColor(renderer,255,0,0,255);
     SDL_RenderFillRect(renderer, &intersection);
 
