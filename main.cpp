@@ -26,10 +26,12 @@ int main( int argc, char *argv[]){
         return 1;
     }
 
- 
     Menus mainMenu;
     mainMenu.menusInit(window, renderer);
     string screen = mainMenu.splash();
+    Game mainGame;
+    mainGame.gameInit(window, renderer);
+    mainGame.gameLoop();
     
 
     SDL_DestroyRenderer(renderer);    

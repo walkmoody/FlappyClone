@@ -1,7 +1,6 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <vector>
-#include "rects.hpp"
 
 using namespace std;
 
@@ -12,6 +11,7 @@ class Game{
     private:
         SDL_Window* window = nullptr;
         SDL_Renderer* renderer = nullptr;
+        const int FPS = 60;
 
 };
 

@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h>
 #include <vector>
 #include "game.hpp"
+#include "rects.hpp"
 
 void Game::gameInit(SDL_Window* window, SDL_Renderer* renderer){
     this->window = window;
