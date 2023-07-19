@@ -36,13 +36,21 @@ void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
             if( windowEvent.type == SDL_QUIT )
                 quit = true;
             SDL_Keycode key = windowEvent.key.keysym.sym;
-            if (key == SDLK_1)
-                down = true;
+            if (windowEvent.type == SDL_KEYDOWN){
+                if (key == SDLK_SPACE)
+                    down = true;
+            }
             if (windowEvent.type == SDL_KEYUP)
-                this->down = false;
+                down = false;
             
         }
-        if (down == true){
-            setRectangleY(10);
+        if (down){
+            setRectangleY(-10);
+            count = 0;
         }
+        else if (!down){
+            setRectangleY(2 + count);
+            count++; 
+        }
+
 }

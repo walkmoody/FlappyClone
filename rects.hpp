@@ -16,6 +16,7 @@ class Rectangle{
     private:
         SDL_Rect user;
         bool down = false;
+        int count = 0;
 };
 
 /*
