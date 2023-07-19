@@ -4,10 +4,10 @@
 #include "rects.hpp"
 
 void Rectangle::initRectangle(){
-    user.w = 100;
-    user.h = 100;
+    user.w = 50;
+    user.h = 50;
     user.y = 0;
-    user.x = 20;
+    user.x = 40;
 }
 
 void Rectangle::setRectangleX(){
@@ -35,22 +35,21 @@ void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
     while (SDL_PollEvent( &windowEvent) != 0){
             if( windowEvent.type == SDL_QUIT )
                 quit = true;
-            SDL_Keycode key = windowEvent.key.keysym.sym;
-            if (windowEvent.type == SDL_KEYDOWN){
-                if (key == SDLK_SPACE)
-                    down = true;
-            }
+            SDL_Keycode key = windowEvent.key.keysym.sym;                
+            if (key == SDLK_SPACE)
+                down = true;
             if (windowEvent.type == SDL_KEYUP)
                 down = false;
             
         }
         if (down){
-            setRectangleY(-10);
+            setRectangleY(-7);
             count = 0;
         }
         else if (!down){
-            setRectangleY(2 + count);
-            count++; 
+            setRectangleY(1 + count);
+            if (count < 5)
+                count++; 
         }
 
 }
