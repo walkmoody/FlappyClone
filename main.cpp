@@ -2,6 +2,8 @@
 #include <SDL2/SDL.h>
 #include <vector>
 #include "rects.hpp"
+#include "menus.hpp"
+#include "game.hpp"
 
 const int WIDTH = 1080;
 const int HEIGHT = 720;
@@ -24,23 +26,11 @@ int main( int argc, char *argv[]){
         return 1;
     }
 
-    SDL_Event windowEvent;
-    bool quit = false;
-    Rectangle rect;
-    rect.initRectangle();
-        
-    while (!quit){
-        rect.rectInput(windowEvent, quit);
-        SDL_RenderClear(renderer);
-        rect.setRectangleX();
-    
-        rect.printRect(renderer);
-        
-        SDL_SetRenderDrawColor (renderer, 255,255,255,255);
-        SDL_RenderPresent( renderer );
-        SDL_Delay(1000/FPS);      
  
-        }
+    Menus mainMenu;
+    mainMenu.menusInit(window, renderer);
+    string screen = mainMenu.splash();
+    
 
     SDL_DestroyRenderer(renderer);    
     SDL_DestroyWindow (window);

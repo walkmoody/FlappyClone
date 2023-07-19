@@ -47,9 +47,11 @@ void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
             count = 0;
         }
         else if (!down){
+            if(user.y < 600){
             setRectangleY(1 + count);
             if (count < 5)
                 count++; 
+            }
         }
 
 }
