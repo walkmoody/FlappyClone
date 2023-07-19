@@ -4,30 +4,45 @@
 #include "rects.hpp"
 
 void Rectangle::initRectangle(){
-    rect.w = 100;
-    rect.h = 100;
-    rect.y = 0;
-    rect.x = 0;
+    user.w = 100;
+    user.h = 100;
+    user.y = 0;
+    user.x = 20;
 }
 
 void Rectangle::setRectangleX(){
-    rect.x = rect.x ;
+    user.x = user.x ;
 
 }
 
 void Rectangle::setRectangleY(int input){
-    rect.y = rect.y + input;
+    user.y = user.y + input;
 
 }
 
 int Rectangle:: getRectangle(){
-    return rect.x;
+    return user.x;
     
 }
 
 void Rectangle::printRect(SDL_Renderer* renderer){
     SDL_SetRenderDrawColor(renderer,255,0,0,255);
-    SDL_RenderDrawRect(renderer, &rect);
+    SDL_RenderDrawRect(renderer, &user);
 
 }
 
+void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
+    while (SDL_PollEvent( &windowEvent) != 0){
+            if( windowEvent.type == SDL_QUIT )
+                quit = true;
+            SDL_Keycode key = windowEvent.key.keysym.sym;
+            if (key == SDLK_1)
+                down = true;
+            if (windowEvent.type == SDL_KEYUP)
+                this->down = false;
+            
+        }
+        if (down == true){
+            setRectangleY(10);
+        }
+}

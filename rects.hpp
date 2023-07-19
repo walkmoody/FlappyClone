@@ -7,13 +7,15 @@ using namespace std;
 
 class Rectangle{
     public:
+        void rectInput(SDL_Event &windowEvent, bool &quit);
         void initRectangle();
         void setRectangleX();
         void setRectangleY(int);
         int getRectangle();
         void printRect(SDL_Renderer* renderer);
     private:
-        SDL_Rect rect;
+        SDL_Rect user;
+        bool down = false;
 };
 
 /*
