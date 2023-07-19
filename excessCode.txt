@@ -1,0 +1,49 @@
+    /*
+    SDL_Rect rect;
+    rect.w = 100;
+    rect.h = 100;
+    rect.y = 0;
+    rect.x = 0;
+
+    SDL_Rect rect2;
+    rect2.w = 100;
+    rect2.h = 100;
+    rect2.y = 50;
+    rect2.x = 50;
+
+    SDL_Rect rect3;
+    rect3.w = 100;
+    rect3.h = 100;
+    rect3.y = 600;
+    rect3.x = 400;
+    */
+
+    SDL_Rect intersection;
+/*
+    SDL_IntersectRect(&rect, &rect2, &intersection); //Basic Collision detection
+    
+    std::vector<SDL_Rect> rv; //SDL_Point does not work
+    for(int i =0; i < 100; i++){
+        //rv.emplace_back(rand()% WIDTH, rand() %HEIGHT);
+        rv.emplace_back(rand()% WIDTH, rand() % HEIGHT, 10, 10);
+    }
+    SDL_RenderDrawRects(renderer, rv.data(), rv.size());
+    
+
+    SDL_RenderDrawRect(renderer, &rect);
+    SDL_RenderDrawRect(renderer, &rect2);
+    SDL_RenderDrawRect(renderer, &rect3);
+    SDL_SetRenderDrawColor(renderer,255,0,0,255);
+    SDL_RenderFillRect(renderer, &intersection);
+*/
+
+   SDL_SetRenderDrawColor(renderer, 0,0,0,255); //backgroujd color
+    SDL_RenderClear(renderer);
+
+    SDL_SetRenderDrawColor(renderer, 100,100,100,255);
+
+    SDL_SetRenderDrawColor (renderer, 255,255,255,255);
+    SDL_RenderDrawPoint(renderer, WIDTH/2, HEIGHT/2);
+
+    //Rectangle Width, Height, X Pos, Y Pos
+    

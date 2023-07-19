@@ -1,31 +1,46 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <vector>
+//#include "rects.cpp"
 
 using namespace std;
 
 class Rectangle{
     public:
-        
-    
+        void initRectangle();
+        void setRectangleX();
+        void setRectangleY(int);
+        int getRectangle();
+        void printRect(SDL_Renderer* renderer);
     private:
-    
         SDL_Rect rect;
-        rect.w = 100;
-        rect.h = 100;
-        rect.y = 0;
-        rect.x = 0;
+};
 
-        SDL_Rect rect2;
-        rect2.w = 100;
-        rect2.h = 100;
-        rect2.y = 50;
-        rect2.x = 50;
+/*
+Rectangle::Rectangle(){
+    rect.w = 40;
+    rect.h = 40;
+    rect.y = 0;
+    rect.x = 0;
+}
 
-        SDL_Rect rect3;
-        rect2.w = 100;
-        rect2.h = 100;
-        rect2.y = 700;
-        rect2.x = 400;
+void Rectangle::setRectangleX(){
+    rect.x = rect.x + 1;
 
 }
+
+void Rectangle::setRectangleY(){
+    rect.y = rect.y + 1;
+
+}
+
+int Rectangle:: getRectangle(){
+    return rect.x;
+    
+}
+
+void Rectangle::printRect(SDL_Renderer* renderer){
+    SDL_SetRenderDrawColor(renderer,255,0,0,255);
+    SDL_RenderDrawRect(renderer, &rect);
+}
+*/
