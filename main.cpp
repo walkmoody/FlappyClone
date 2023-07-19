@@ -7,6 +7,7 @@ const int WIDTH = 1080;
 const int HEIGHT = 720;
 const int FPS = 60; 
 
+
 //g++ -I src/include -L src/lib -o main main.cpp -lmingw32 -lSDL2main -lSDL2
 
 int main( int argc, char *argv[]){
@@ -15,6 +16,7 @@ int main( int argc, char *argv[]){
     SDL_Surface* image = nullptr;
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer);
+    SDL_SetWindowTitle(window, "FUN GAME"); // Change title here
 
     SDL_RenderPresent( renderer );
     if (NULL == window) {
