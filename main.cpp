@@ -48,14 +48,13 @@ int main( int argc, char *argv[]){
         else if (screen == "game")
             screen = mainMenu.game_screen(); // in menu create a game sectoion to init
         else if (screen == "game_over")
-            screen = "game_over_screen()"; // todo add gameOver
+            screen = mainMenu.game_over(); // todo add gameOver
         else if (screen == "instructions")
-            screen = "instructions_screen()";  //todo add instructions
-        else if (screen == "quit")
-            break;
+            screen = mainMenu.instructions();  //todo add instructions
+        else if (screen == "goodbye")
+            screen = mainMenu.good_bye(); // todo add goodbye 
         else
-            screen = "goodbye_screen()"; // todo add goodbye 
-
+            break;
     }
 
     SDL_DestroyRenderer(renderer);    

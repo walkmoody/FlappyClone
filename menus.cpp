@@ -24,7 +24,7 @@ string Menus::mainMenu(){
     SDL_SetRenderDrawColor (renderer, 100,100,100,255);
     SDL_RenderPresent(renderer);
     SDL_Delay(1000);
-    return "menu";
+    return "game";
 
 }
 
@@ -36,13 +36,13 @@ string Menus::game_screen(){
 }
 
 string Menus::instructions(){
-
+    return "quit";
 }
 
 string Menus::game_over(){
-
+    return "quit";
 }
 
 string Menus::good_bye(){
-
+    return "quit";
 }
