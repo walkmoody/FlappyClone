@@ -40,18 +40,21 @@ void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
                 down = false;
         }
         if (down){
-            if (user.y > 50)
-                setRectangleY(-2 -upAccel);
+            setRectangleY(-2 -upAccel);
+            if (user.y < 100)
+                user.y = 101;
             if (upAccel < 15)
                 upAccel++; 
             downAccel = 0;
             }
-
         else if (!down){
-            if(user.y < 600)
-                setRectangleY(2 + downAccel);
-                if (downAccel < 15)
-                    downAccel++;
+            setRectangleY(4 + downAccel);
+            if(user.y > 580)
+                user.y = 581;
+            if (downAccel < 15){
+                downAccel++;
+                cout << downAccel << endl;
+            }
             upAccel = 0;
             }
             

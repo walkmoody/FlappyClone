@@ -3,7 +3,6 @@
 //#include <SDL2/SDL_ttf.h>
 #include <vector>
 
-//#include "rects.hpp"
 using namespace std;
 class Menus{
 
