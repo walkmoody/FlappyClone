@@ -11,7 +11,7 @@ void Rectangle::initRectangle(){
 }
 
 void Rectangle::setRectangleX(){
-    user.x = user.x ;
+    user.x = user.x;
 
 }
 
@@ -45,7 +45,7 @@ void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
                 down = false;
         }
         if (down){
-            setRectangleY(-1 -upAccel);
+            setRectangleY(-3 -upAccel);
              if (upAccel < 12)
                 upAccel++; 
             downAccel = 0;
@@ -53,7 +53,7 @@ void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
 
         else if (!down){
             if(user.y < 600)
-                setRectangleY(1 + downAccel);
+                setRectangleY(3 + downAccel);
                 if (downAccel < 12)
                     downAccel++;
             upAccel = 0;

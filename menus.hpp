@@ -21,7 +21,7 @@ class Menus{
         SDL_Window* window = nullptr;
         SDL_Renderer* renderer = nullptr;
         SDL_Event windowEvent;
-        //TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 24);
+        //TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 24); //TODO figure out fonts
         SDL_Color White = {255, 255, 255};
         const int FPS = 60;
 };
