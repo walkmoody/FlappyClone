@@ -6,8 +6,8 @@
 void Rectangle::initRectangle(){
     user.w = 50;
     user.h = 50;
-    user.y = 0;
-    user.x = 40;
+    user.y = 200;
+    user.x = 90;
 }
 
 void Rectangle::setRectangleX(){
@@ -16,8 +16,11 @@ void Rectangle::setRectangleX(){
 }
 
 void Rectangle::setRectangleY(int input){
-    user.y = user.y + input;
-
+    if (user.y > 50)
+        user.y = user.y + input;
+    else 
+        user.y = 51;
+    
 }
 
 int Rectangle:: getRectangle(){
@@ -26,7 +29,7 @@ int Rectangle:: getRectangle(){
 }
 
 void Rectangle::printRect(SDL_Renderer* renderer){
-    SDL_SetRenderDrawColor(renderer,255,0,0,255);
+    SDL_SetRenderDrawColor(renderer,255,0,0,255); // red border
     SDL_RenderDrawRect(renderer, &user);
 
 }
@@ -35,23 +38,26 @@ void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
     while (SDL_PollEvent( &windowEvent) != 0){
             if( windowEvent.type == SDL_QUIT )
                 quit = true;
-            SDL_Keycode key = windowEvent.key.keysym.sym;                
+            SDL_Keycode key = windowEvent.key.keysym.sym; 
             if (key == SDLK_SPACE)
                 down = true;
             if (windowEvent.type == SDL_KEYUP)
                 down = false;
-            
         }
         if (down){
-            setRectangleY(-7);
-            count = 0;
-        }
-        else if (!down){
-            if(user.y < 600){
-            setRectangleY(1 + count);
-            if (count < 5)
-                count++; 
+            setRectangleY(-1 -upAccel);
+             if (upAccel < 12)
+                upAccel++; 
+            downAccel = 0;
             }
-        }
+
+        else if (!down){
+            if(user.y < 600)
+                setRectangleY(1 + downAccel);
+                if (downAccel < 12)
+                    downAccel++;
+            upAccel = 0;
+            }
+            
 
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SDL2/SDL.h>
+//#include <SDL2/SDL_ttf.h>
 #include <vector>
 
 //#include "rects.hpp"
@@ -20,4 +21,8 @@ class Menus{
         SDL_Window* window = nullptr;
         SDL_Renderer* renderer = nullptr;
         SDL_Event windowEvent;
+        //TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 24);
+        SDL_Color White = {255, 255, 255};
+        const int FPS = 60;
 };
+

@@ -44,7 +44,7 @@ int main( int argc, char *argv[]){
         if (screen == "splash")
             screen = mainMenu.splash();
         else if (screen == "menu")
-            screen = "menu_screen()";
+            screen = mainMenu.mainMenu();
         else if (screen == "game")
             screen = mainMenu.game_screen(); // in menu create a game sectoion to init
         else if (screen == "game_over")

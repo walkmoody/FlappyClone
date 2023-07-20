@@ -16,5 +16,6 @@ class Rectangle{
     private:
         SDL_Rect user;
         bool down = false;
-        int count = 0;
+        int downAccel = 0;
+        int upAccel = 0;
 };

@@ -21,11 +21,29 @@ string Menus::splash(){
     }
 
 string Menus::mainMenu(){
-    SDL_SetRenderDrawColor (renderer, 100,100,100,255);
-    SDL_RenderPresent(renderer);
-    SDL_Delay(1000);
+    bool looping = true;
+    bool quit = false;
+    while (looping){
+        while (SDL_PollEvent( &windowEvent) != 0){
+            if(windowEvent.type == SDL_QUIT ){
+                quit = true;
+                looping = false;
+            }
+            SDL_Keycode key = windowEvent.key.keysym.sym;
+            if (key == SDLK_SPACE){
+                return "game";
+                cout << "quit" << endl;
+            }
+        }
+            SDL_RenderClear(renderer);
+            SDL_SetRenderDrawColor (renderer, 123,120,200,255);
+            SDL_RenderPresent(renderer);
+            SDL_Delay(1000/FPS);      
+    
+        }
+    if (quit == true)
+        return "quit";
     return "game";
-
 }
 
 string Menus::game_screen(){

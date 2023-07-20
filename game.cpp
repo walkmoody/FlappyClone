@@ -21,18 +21,12 @@ void Game::gameLoop(){
             rect.rectInput(windowEvent, quit);
             SDL_RenderClear(renderer);
             rect.setRectangleX();
-            cout << quit << endl;
+
             rect.printRect(renderer);
             
-            SDL_SetRenderDrawColor (renderer, 255,255,255,255);
+            SDL_SetRenderDrawColor (renderer, 123,100,100,255);
             SDL_RenderPresent( renderer );
             SDL_Delay(1000/FPS);      
     
             }
-    if (quit){
-        SDL_DestroyRenderer(renderer);    
-        SDL_DestroyWindow (window);
-        SDL_Quit();
-        //return EXIT_SUCCESS;
-    }
 }
