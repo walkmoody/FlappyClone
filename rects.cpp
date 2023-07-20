@@ -3,6 +3,7 @@
 #include <vector>
 #include "rects.hpp"
 
+
 void Rectangle::initRectangle(SDL_Window* window, SDL_Renderer* renderer){
     user.w = 50;
     user.h = 50;
@@ -11,6 +12,7 @@ void Rectangle::initRectangle(SDL_Window* window, SDL_Renderer* renderer){
     this->window = window;
     this->renderer = renderer;
     screenSurface = SDL_GetWindowSurface(window);
+    charSprite = load_surface();
 }
 
 void Rectangle::setRectangleX(){
@@ -26,18 +28,17 @@ int Rectangle:: getRectangle(){
     
 }
 
-bool Rectangle::loadMedia(){
-    bool success = true;
-
+SDL_Surface *Rectangle::load_surface(){
     //Load splash image
-    charSprite = SDL_LoadBMP( "sprites/test.bmp" );
-    if( charSprite == NULL ){
+    SDL_Surface *image_surface = SDL_LoadBMP( "sprites/test.bmp" );
+    if(!image_surface){
         printf( "Unable to load image %s! SDL Error: %s\n", "sprites/test.bmp", SDL_GetError() );
-        success = false;
+        return 0;
     }
 
-    return success;
+    return image_surface;
 }
+
 
 void Rectangle::close(){
     //Deallocate surface
@@ -47,8 +48,12 @@ void Rectangle::close(){
 
 void Rectangle::printRect(){
     SDL_SetRenderDrawColor(renderer,255,0,0,255); // red border
+    SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0, 0, 0));
+    SDL_BlitSurface(charSprite, NULL, screenSurface, &user);
+
     //SDL_BlitSurface(screenSurface, &user, charSprite, &user);
-    SDL_RenderDrawRect(renderer, &user);
+    //SDL_RenderFillRect(renderer, &user);
+    //SDL_RenderDrawRect(renderer, &user);
 
 }
 
@@ -80,6 +85,6 @@ void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
             }
             upAccel = 0;
             }
-            
-
+        
 }
+

@@ -13,7 +13,7 @@ class Rectangle{
         void setRectangleY(int);
         int getRectangle();
         void printRect();
-        bool loadMedia();
+        SDL_Surface* load_surface();
         void close();
     private:
         SDL_Rect user;
@@ -24,4 +24,5 @@ class Rectangle{
         SDL_Surface* charSprite = nullptr;
         SDL_Window* window = nullptr;
         SDL_Renderer* renderer = nullptr;
+        SDL_Texture* texture = nullptr;
 };

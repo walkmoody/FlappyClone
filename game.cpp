@@ -16,21 +16,21 @@ void Game::gameLoop(){
     bool quit = false;
     Rectangle rect;
     rect.initRectangle(window,renderer);
-    rect.loadMedia();
+    rect.load_surface();
     Borders border;
     border.initBorders(window, renderer);
 
 
     while (!quit){
-            rect.rectInput(windowEvent, quit);
             SDL_RenderClear(renderer);
+            rect.rectInput(windowEvent, quit);
             rect.setRectangleX();
-           
+
             rect.printRect();
             border.printBorders();
 
             SDL_SetRenderDrawColor (renderer, 10, 10, 10,255);
-            
+
             SDL_RenderPresent(renderer);
             SDL_Delay(1000/FPS);      
             }

@@ -25,6 +25,8 @@ class Menus{
         SDL_Event windowEvent;
         SDL_Surface* screenSurface = nullptr;
         SDL_Surface* test = nullptr;
+        SDL_Texture* texture = nullptr;
+        SDL_Rect viewport;
         //TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 24); //TODO figure out fonts
         SDL_Color White = {255, 255, 255};
         const int FPS = 60;
