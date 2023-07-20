@@ -1,7 +1,6 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <vector>
-#include "rects.hpp"
 #include "menus.hpp"
 #include "game.hpp"
 
@@ -19,20 +18,45 @@ int main( int argc, char *argv[]){
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer);
     SDL_SetWindowTitle(window, "FUN GAME"); // Change title here
-
     SDL_RenderPresent( renderer );
+    SDL_Event windowEvent;
+
+    
     if (NULL == window) {
         std::cout << "Could not create Window: " << SDL_GetError() << std::endl;
         return 1;
     }
 
+    bool looping = true;
+    string screen = "splash";
     Menus mainMenu;
-    mainMenu.menusInit(window, renderer);
-    string screen = mainMenu.splash();
-    Game mainGame;
-    mainGame.gameInit(window, renderer);
-    mainGame.gameLoop();
-    
+    mainMenu.menusInit(window, renderer, windowEvent);
+
+    while (looping){
+        while (SDL_PollEvent( &windowEvent) != 0){
+            if( windowEvent.type == SDL_QUIT ){
+                SDL_DestroyRenderer(renderer);    
+                SDL_DestroyWindow (window);
+                SDL_Quit();
+                return EXIT_SUCCESS;
+            }}
+        
+        if (screen == "splash")
+            screen = mainMenu.splash();
+        else if (screen == "menu")
+            screen = "menu_screen()";
+        else if (screen == "game")
+            screen = mainMenu.game_screen(); // in menu create a game sectoion to init
+        else if (screen == "game_over")
+            screen = "game_over_screen()"; // todo add gameOver
+        else if (screen == "instructions")
+            screen = "instructions_screen()";  //todo add instructions
+        else if (screen == "quit")
+            break;
+        else
+            screen = "goodbye_screen()"; // todo add goodbye 
+
+    }
 
     SDL_DestroyRenderer(renderer);    
     SDL_DestroyWindow (window);

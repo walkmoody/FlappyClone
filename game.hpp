@@ -7,10 +7,11 @@ using namespace std;
 class Game{
     public:
         void gameLoop();
-        void gameInit(SDL_Window* window, SDL_Renderer* renderer);
+        void gameInit(SDL_Window* , SDL_Renderer* , SDL_Event &);
     private:
         SDL_Window* window = nullptr;
         SDL_Renderer* renderer = nullptr;
+        SDL_Event windowEvent;
         const int FPS = 60;
 
 };
