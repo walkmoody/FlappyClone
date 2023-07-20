@@ -16,17 +16,15 @@ void Game::gameLoop(){
     bool quit = false;
     Rectangle rect;
     rect.initRectangle();
-    //Borders border;
-    //border.initBorders(window, renderer);
+    Borders border;
+    border.initBorders(window, renderer);
 
 
     while (!quit){
             rect.rectInput(windowEvent, quit);
             SDL_RenderClear(renderer);
-            cout << "before" << endl;
             rect.setRectangleX();
-            //border.printBorders();
-            cout << "after";
+            border.printBorders();
             rect.printRect(renderer);
             
             SDL_SetRenderDrawColor (renderer, 123,100,100,255);

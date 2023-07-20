@@ -3,11 +3,19 @@
 #include <vector>
 #include "borders.hpp"
 
+using namespace std;
+
 void Borders::createBorders(){
-    border[0].h = 20;
-    border[0].w = 700;
-    border[0].y = 20;
-    border[0].x = 0;
+    test.w = 50;
+    test.h = 50;
+    test.y = 20;
+    test.x = 50;
+    borderArr[0] = &test;
+    test.w = 100;
+    test.h = 200;
+    test.y = 300;
+    test.x = 400;
+    borderArr[1] = &test;
 }
 
 void Borders::initBorders(SDL_Window* window, SDL_Renderer* renderer){
@@ -16,9 +24,20 @@ void Borders::initBorders(SDL_Window* window, SDL_Renderer* renderer){
     createBorders();
 }
 
-void Borders::printBorders(){
-    for(int i = 0; i < border.size(); i++){
-        SDL_SetRenderDrawColor(renderer,255,0,0,255); // red border
-        SDL_RenderDrawRect(renderer, &border[i]);
+int Borders::get_rect_count(){
+    int i;
+    for (i = 0; i < arrSize; i++){
+        if (borderArr[i] == NULL)
+            break;
     }
+    return i;
+}
+
+void Borders::printBorders(){
+    int totalBorder = get_rect_count();
+    for (int i = 0; i < totalBorder; i++){
+        SDL_SetRenderDrawColor(renderer,255,0,0,255); // red border
+        SDL_RenderDrawRect(renderer, borderArr[i]);
+    }
+    
 }

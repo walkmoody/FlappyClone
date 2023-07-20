@@ -9,8 +9,11 @@ class Borders{
         void initBorders(SDL_Window*, SDL_Renderer*);
         void createBorders();
         void printBorders();
+        int get_rect_count();
     private:
         SDL_Window* window = nullptr;
         SDL_Renderer* renderer = nullptr;
-        vector<SDL_Rect> border;
+        int arrSize = 100;
+        SDL_Rect *borderArr[100] = {};
+        SDL_Rect test;
 };
