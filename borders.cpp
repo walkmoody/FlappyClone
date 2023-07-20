@@ -37,6 +37,7 @@ void Borders::printBorders(){
     int totalBorder = get_rect_count();
     for (int i = 0; i < totalBorder; i++){
         SDL_SetRenderDrawColor(renderer,255,0,0,255); // red border
+        SDL_RenderFillRect(renderer, borderArr[i]);
         SDL_RenderDrawRect(renderer, borderArr[i]);
     }
     
