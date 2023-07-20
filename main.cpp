@@ -14,23 +14,22 @@ const int FPS = 60;
 int main( int argc, char *argv[]){
     SDL_Window* window = nullptr; //SDL_CreateWindow("new Test", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_ALLOW_HIGHDPI) ; // change window name here, CHANGE STARTING POS HERE
     SDL_Renderer* renderer = nullptr;
-    SDL_Surface* image = nullptr;
+    SDL_Surface* screenSurface = nullptr;
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer);
     SDL_SetWindowTitle(window, "FUN GAME"); // Change title here
     SDL_RenderPresent( renderer );
     SDL_Event windowEvent;
 
-    
     if (NULL == window) {
         std::cout << "Could not create Window: " << SDL_GetError() << std::endl;
         return 1;
     }
-
+    screenSurface = SDL_GetWindowSurface( window );
     bool looping = true;
     string screen = "splash";
     Menus mainMenu;
-    mainMenu.menusInit(window, renderer, windowEvent);
+    mainMenu.menusInit(window, renderer, windowEvent, screenSurface);
 
     while (looping){
         while (SDL_PollEvent( &windowEvent) != 0){

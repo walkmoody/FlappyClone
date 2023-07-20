@@ -3,11 +3,14 @@
 #include <vector>
 #include "rects.hpp"
 
-void Rectangle::initRectangle(){
+void Rectangle::initRectangle(SDL_Window* window, SDL_Renderer* renderer){
     user.w = 50;
     user.h = 50;
     user.y = 200;
     user.x = 90;
+    this->window = window;
+    this->renderer = renderer;
+    screenSurface = SDL_GetWindowSurface(window);
 }
 
 void Rectangle::setRectangleX(){
@@ -15,7 +18,7 @@ void Rectangle::setRectangleX(){
 }
 
 void Rectangle::setRectangleY(int input){
-        user.y = user.y + input;
+    user.y = user.y + input;
 }
 
 int Rectangle:: getRectangle(){
@@ -23,8 +26,28 @@ int Rectangle:: getRectangle(){
     
 }
 
-void Rectangle::printRect(SDL_Renderer* renderer){
+bool Rectangle::loadMedia(){
+    bool success = true;
+
+    //Load splash image
+    charSprite = SDL_LoadBMP( "sprites/test.bmp" );
+    if( charSprite == NULL ){
+        printf( "Unable to load image %s! SDL Error: %s\n", "sprites/test.bmp", SDL_GetError() );
+        success = false;
+    }
+
+    return success;
+}
+
+void Rectangle::close(){
+    //Deallocate surface
+    SDL_FreeSurface(charSprite);
+    charSprite = NULL;
+}
+
+void Rectangle::printRect(){
     SDL_SetRenderDrawColor(renderer,255,0,0,255); // red border
+    //SDL_BlitSurface(screenSurface, &user, charSprite, &user);
     SDL_RenderDrawRect(renderer, &user);
 
 }
@@ -49,8 +72,8 @@ void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
             }
         else if (!down){
             setRectangleY(4 + downAccel);
-            if(user.y > 580)
-                user.y = 581;
+            if(user.y > 550)
+                user.y = 549;
             if (downAccel < 15){
                 downAccel++;
                 cout << downAccel << endl;
