@@ -117,8 +117,12 @@ void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
                     break;
                     
             }
-            if( windowEvent.type == SDL_QUIT )
-                quit = true;
+            break;
+        case SDL_QUIT:
+            quit = true;
+            break;
+        default:
+            break;
         }
     }
         if (down){

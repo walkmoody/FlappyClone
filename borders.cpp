@@ -32,6 +32,7 @@ int Borders::get_rect_count(){
     }
     return i;
 }
+
 void Borders::colors(int &color, bool &colorUp){
     if(color == 100)
         colorUp = true;
@@ -43,6 +44,11 @@ void Borders::colors(int &color, bool &colorUp){
         color--;
 
 }
+
+void Borders::createObstacles(){
+    
+}
+
 void Borders::printBorders(){
     int totalBorder = get_rect_count();
     for (int i = 0; i < totalBorder; i++){

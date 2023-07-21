@@ -10,6 +10,7 @@ class Borders{
         void createBorders();
         void printBorders();
         int get_rect_count();
+        void createObstacles();
         void colors(int &, bool &);
     private:
         SDL_Window* window = nullptr;
