@@ -23,6 +23,17 @@ void Rectangle::setRectangleY(int input){
     user.y = user.y + input;
 }
 
+void Rectangle::right(){
+    user.x = user.x + userFSpeed;
+        if (user.x > 1080) // width of screen
+        user.x = user.x - userFSpeed;
+}
+void Rectangle::left(){
+    user.x = user.x - userBSpeed;
+    if (user.x < 0) // width of screen
+        user.x = user.x + userBSpeed;
+}
+
 int Rectangle:: getRectangle(){
     return user.y;
     
@@ -59,14 +70,57 @@ void Rectangle::printRect(){
 
 void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
     while (SDL_PollEvent( &windowEvent) != 0){
+        switch(windowEvent.type){
+            case SDL_KEYDOWN:
+                switch(windowEvent.key.keysym.sym)
+                {
+                    case SDLK_ESCAPE:
+                        quit = true;
+                        break;
+                    case SDLK_SPACE:
+                        down = true;
+                        break;
+                    case SDLK_d:
+                        rightPress = true;
+                        break;
+                    case SDLK_a:
+                        leftPress = true;
+                        break;
+                    case SDLK_RIGHT:
+                        rightPress = true;
+                        break;
+                    case SDLK_LEFT:
+                        leftPress = true;
+                        break;
+                    default:
+                        break;
+            }
+            break;
+        case SDL_KEYUP:
+            switch(windowEvent.key.keysym.sym){
+                case SDLK_SPACE:
+                    down = false;
+                    break;
+                case SDLK_d:
+                    rightPress = false;
+                    break;
+                case SDLK_a:
+                    leftPress = false;
+                    break;
+                case SDLK_RIGHT:
+                    rightPress = false;
+                    break;
+                case SDLK_LEFT:
+                    leftPress = false;
+                    break;
+                default:
+                    break;
+                    
+            }
             if( windowEvent.type == SDL_QUIT )
                 quit = true;
-            SDL_Keycode key = windowEvent.key.keysym.sym; 
-            if (key == SDLK_SPACE)
-                down = true;
-            if (windowEvent.type == SDL_KEYUP)
-                down = false;
         }
+    }
         if (down){
             setRectangleY(-2 -upAccel);
             if (user.y < 100)
@@ -79,12 +133,15 @@ void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
             setRectangleY(4 + downAccel);
             if(user.y > 550)
                 user.y = 549;
-            if (downAccel < 15){
+            if (downAccel < 15)
                 downAccel++;
-                cout << downAccel << endl;
-            }
             upAccel = 0;
             }
+        if(rightPress){
+            right();
+        }
+        if(leftPress){
+            left();
+        }
         
 }
-

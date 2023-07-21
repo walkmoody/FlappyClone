@@ -15,11 +15,17 @@ class Rectangle{
         void printRect();
         SDL_Surface* load_surface();
         void close();
+        void right();
+        void left();
     private:
         SDL_Rect user;
         bool down = false;
+        bool rightPress = false;
+        bool leftPress = false;
         int downAccel = 0;
         int upAccel = 0;
+        int userFSpeed = 7; // forward speed
+        int userBSpeed = 5; // backward speed
         SDL_Surface* screenSurface = nullptr;
         SDL_Surface* charSprite = nullptr;
         SDL_Window* window = nullptr;
