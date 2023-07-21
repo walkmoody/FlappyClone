@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <vector>
+#include "rects.hpp"
 
 using namespace std;
 

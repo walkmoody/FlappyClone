@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <vector>
+
 //#include "rects.cpp"
 
 using namespace std;
@@ -32,3 +33,4 @@ class Rectangle{
         SDL_Renderer* renderer = nullptr;
         SDL_Texture* texture = nullptr;
 };
+

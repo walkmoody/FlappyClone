@@ -2,7 +2,7 @@
 #include <SDL2/SDL.h>
 #include <vector>
 #include "game.hpp"
-#include "rects.hpp"
+//#include "rects.hpp"
 #include "borders.hpp"
 
 void Game::gameInit(SDL_Window* window, SDL_Renderer* renderer, SDL_Event &windowEvent){

@@ -3,7 +3,7 @@
 #include <vector>
 #include <cstdlib>
 #include "borders.hpp"
-#include "rects.hpp"
+//#include "rects.hpp"
 
 using namespace std;
 
@@ -91,6 +91,7 @@ bool Borders::checkCollision(SDL_Rect a, SDL_Rect* b, int i)
 
     //Calculate the sides of rect B
     leftB = b[i].x;
+    cout << b[i].x << endl;
     rightB = b[i].x + b[i].w;
     topB = b[i].y;
     bottomB = b[i].y + b[i].h;
@@ -139,6 +140,7 @@ bool Borders::type2collision(int i){
     SDL_SetRenderDrawColor(renderer,color1, color3, color2,255); 
     SDL_RenderFillRect(renderer, borderArr[i]);
     SDL_RenderDrawRect(renderer, borderArr[i]);
+    return true;
 }
 
 void Borders::createObstacles(){
@@ -205,4 +207,5 @@ bool Borders::printBorders(){
     obstTime1+= 3;
     obstTime2+= 3;
     obstTime3+= 3;
+    return gameCont;
 }

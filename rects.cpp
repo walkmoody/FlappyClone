@@ -2,7 +2,8 @@
 #include <SDL2/SDL.h>
 #include <vector>
 #include "rects.hpp"
-
+#ifndef RECTS_HPP
+#define RECTS_HPP
 
 void Rectangle::initRectangle(SDL_Window* window, SDL_Renderer* renderer){
     user.w = 50;
@@ -149,3 +150,6 @@ void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
         }
         
 }
+
+
+#endif // RECTS_HPP
