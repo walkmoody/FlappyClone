@@ -75,7 +75,7 @@ string Borders::objRand(){
     else   
         return "ob2";
 }
-bool Borders::checkCollision(SDL_Rect a, SDL_Rect* b, int i)
+bool Borders::checkCollision(SDL_Rect a, int i)
 {
     //The sides of the rectangles
     int leftA, leftB;
@@ -104,14 +104,14 @@ bool Borders::checkCollision(SDL_Rect a, SDL_Rect* b, int i)
         tempY = obst2bottom.y;
     }
     else if (i == 6){
-        tempX = obst2top.x;
-        tempH = obst2top.h;
+        tempX = obst3top.x;
+        tempH = obst3top.h;
         tempY = 0;
     }
     else if (i == 7){
-        tempX = obst2bottom.x; 
+        tempX = obst3bottom.x; 
         tempH = 700;
-        tempY = obst2bottom.y;
+        tempY = obst3bottom.y;
     }
  
     //Calculate the sides of rect A
@@ -127,18 +127,22 @@ bool Borders::checkCollision(SDL_Rect a, SDL_Rect* b, int i)
     bottomB = tempY + tempH;
 
     if( bottomA <= topB ){
+        cout << "test1";
         return false;
     }
 
     if( topA >= bottomB ){
+        cout << "test2";
         return false;
     }
 
     if( rightA <= leftB ){
+        cout << "test3";
         return false;
     }
 
     if( leftA >= rightB ){
+        cout << "test4";
         return false;
     }
 
@@ -150,7 +154,7 @@ bool Borders::checkCollision(SDL_Rect a, SDL_Rect* b, int i)
 void Borders::type1collision(int i){
     
     SDL_Rect tempRect = rect.getRect();
-    bool collide = checkCollision(tempRect, borderArr[i], i);
+    bool collide = checkCollision(tempRect, i);
     SDL_SetRenderDrawColor(renderer, color2, color3 , color1,255); 
     SDL_RenderFillRect(renderer, borderArr[i]);
     SDL_RenderDrawRect(renderer, borderArr[i]);
@@ -160,7 +164,7 @@ void Borders::type1collision(int i){
 bool Borders::type2collision(int i){
 
     SDL_Rect tempRect = rect.getRect();
-    bool collide = checkCollision(tempRect, borderArr[i], i);
+    bool collide = checkCollision(rect.getRect(), i);
     
     SDL_SetRenderDrawColor(renderer,color1, color3, color2,255); 
     SDL_RenderFillRect(renderer, borderArr[i]);
@@ -212,13 +216,15 @@ void Borders::createObstacles(){
 
 bool Borders::printBorders(){
     int totalBorder = get_rect_count();
-    bool gameCont = false;
     createObstacles();
     for (int i = 2; i < totalBorder; i++){
-            if(obType[(i-2)/2] == "ob1")
-                type1collision(i);
-            else
-                gameCont = type2collision(i);
+        if (gameCont == true)
+            break;
+        if(obType[(i-2)/2] == "ob1")
+            type1collision(i);
+        else
+            gameCont = type2collision(i);
+            
         }
     for(int i = 0; i < 2; i++){
             SDL_SetRenderDrawColor(renderer,color1,color2,color3,255); 

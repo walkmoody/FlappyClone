@@ -17,7 +17,7 @@ class Borders{
         string objRand();
         void type1collision(int);
         bool type2collision(int);
-        bool checkCollision(SDL_Rect, SDL_Rect* , int);
+        bool checkCollision(SDL_Rect, int);
     private:
         Rectangle rect;
         SDL_Window* window = nullptr;
@@ -44,6 +44,7 @@ class Borders{
         int randNum = 0;
         int randNum2 = 0;
         int randNum3 =0;
+        bool gameCont = false;
         std::string obType[3] ={"ob1", "ob1", "ob1"};
 
 };
