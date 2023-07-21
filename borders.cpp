@@ -66,6 +66,26 @@ int Borders::random(){
     return newNum;
 }
 
+string Borders::objRand(){
+    int obRand = rand() % 2;
+    if (obRand == 1)
+        return "ob1";
+    else   
+        return "ob2";
+}
+
+void Borders::type1collision(int i){
+    SDL_SetRenderDrawColor(renderer, color2, color3 , color1,255); 
+    SDL_RenderFillRect(renderer, borderArr[i]);
+    SDL_RenderDrawRect(renderer, borderArr[i]);
+
+}
+void Borders::type2collision(int i){
+    SDL_SetRenderDrawColor(renderer,color1, color3, color2,255); 
+    SDL_RenderFillRect(renderer, borderArr[i]);
+    SDL_RenderDrawRect(renderer, borderArr[i]);
+}
+
 void Borders::createObstacles(){
     if (obstTime1 < 1180){ // fix
         obst1top.h = 200 + randNum; // calculates where the obst will be placed
@@ -76,7 +96,7 @@ void Borders::createObstacles(){
         obst1bottom.x = 1080 - obstTime1;
         borderArr[3] = &obst1bottom;
     }   
-    if (obstTime1 < 1680){ // fix
+    if (obstTime1 < 1681){ // fix
         obst2top.h = 200 + randNum2; // calculates where the obst will be placed
         obst2top.x = 1580 - obstTime1;
         borderArr[4] = &obst2top;
@@ -89,7 +109,8 @@ void Borders::createObstacles(){
         obstTime1 = 0;
         randNum2 = random();
         randNum = random();
-        reset = true;
+        obType[0] = objRand();
+        obType[1] = objRand();
      }
     if (obstTime3 < 2180){ // fix
         obst3top.h = 200 + randNum3; // calculates where the obst will be placed
@@ -103,6 +124,7 @@ void Borders::createObstacles(){
     else{
         obstTime3 = 0;
         randNum3 = random();
+        obType[2] = objRand();
     }    
 }
 
@@ -110,11 +132,18 @@ void Borders::printBorders(){
     int totalBorder = get_rect_count();
     
     createObstacles();
-    for (int i = 0; i < totalBorder; i++){
-        SDL_SetRenderDrawColor(renderer,color1,color2,color3,255); 
-        SDL_RenderFillRect(renderer, borderArr[i]);
-        SDL_RenderDrawRect(renderer, borderArr[i]);
-    }
+    for (int i = 2; i < totalBorder; i++){
+            if(obType[(i-2)/2] == "ob1")
+                type1collision(i);
+            else
+                type2collision(i);
+        }
+    for(int i = 0; i < 2; i++){
+            SDL_SetRenderDrawColor(renderer,color1,color2,color3,255); 
+            SDL_RenderFillRect(renderer, borderArr[i]);
+            SDL_RenderDrawRect(renderer, borderArr[i]);
+        }
+
     colors(color1, color1Up);
     colors(color2, color2Up);
     colors(color3, color3Up);

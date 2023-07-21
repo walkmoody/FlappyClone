@@ -25,11 +25,12 @@ void Game::gameLoop(){
             SDL_RenderClear(renderer);
             rect.rectInput(windowEvent, quit);
             rect.setRectangleX();
-
+            
             rect.printRect();
             border.printBorders();
+            
 
-            SDL_SetRenderDrawColor (renderer, 10, 10, 10,255);
+            SDL_SetRenderDrawColor(renderer, 10, 10, 10,255);
 
             SDL_RenderPresent(renderer);
             SDL_Delay(1000/FPS);      
