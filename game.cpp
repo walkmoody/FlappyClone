@@ -18,7 +18,7 @@ void Game::gameLoop(){
     rect.initRectangle(window,renderer);
     rect.load_surface();
     Borders border;
-    border.initBorders(window, renderer);
+    border.initBorders(window, renderer, rect);
 
 
     while (!quit){
@@ -26,8 +26,8 @@ void Game::gameLoop(){
             rect.rectInput(windowEvent, quit);
             rect.setRectangleX();
             
+            quit = border.printBorders();
             rect.printRect();
-            border.printBorders();
             
 
             SDL_SetRenderDrawColor(renderer, 10, 10, 10,255);

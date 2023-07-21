@@ -3,6 +3,7 @@
 #include <vector>
 #include <cstdlib>
 #include "borders.hpp"
+#include "rects.hpp"
 
 using namespace std;
 
@@ -31,9 +32,10 @@ void Borders::createBorders(){
     obst3bottom.h = 1000;
 }
 
-void Borders::initBorders(SDL_Window* window, SDL_Renderer* renderer){
+void Borders::initBorders(SDL_Window* window, SDL_Renderer* renderer, Rectangle &rect){
     this->window = window;
     this->renderer = renderer;
+    this->rect = rect;
     randNum = random();
     randNum2 = random();
     randNum3 = random();
@@ -73,14 +75,67 @@ string Borders::objRand(){
     else   
         return "ob2";
 }
+bool Borders::checkCollision(SDL_Rect a, SDL_Rect* b, int i)
+{
+    //The sides of the rectangles
+    int leftA, leftB;
+    int rightA, rightB;
+    int topA, topB;
+    int bottomA, bottomB;
+
+    //Calculate the sides of rect A
+    leftA = a.x;
+    rightA = a.x + a.w;
+    topA = a.y;
+    bottomA = a.y + a.h;
+
+    //Calculate the sides of rect B
+    leftB = b[i].x;
+    rightB = b[i].x + b[i].w;
+    topB = b[i].y;
+    bottomB = b[i].y + b[i].h;
+
+    if( bottomA <= topB )
+    {
+        return false;
+    }
+
+    if( topA >= bottomB )
+    {
+        return false;
+    }
+
+    if( rightA <= leftB )
+    {
+        return false;
+    }
+
+    if( leftA >= rightB )
+    {
+        return false;
+    }
+
+    //If none of the sides from A are outside B
+    return true;
+}
+
 
 void Borders::type1collision(int i){
+    
+    SDL_Rect tempRect = rect.getRect();
+    bool collide = checkCollision(tempRect, borderArr[i], i);
     SDL_SetRenderDrawColor(renderer, color2, color3 , color1,255); 
     SDL_RenderFillRect(renderer, borderArr[i]);
     SDL_RenderDrawRect(renderer, borderArr[i]);
 
+
 }
-void Borders::type2collision(int i){
+bool Borders::type2collision(int i){
+
+    SDL_Rect tempRect = rect.getRect();
+    bool collide = checkCollision(tempRect, borderArr[i], i);
+    if (collide == true)
+       return false; 
     SDL_SetRenderDrawColor(renderer,color1, color3, color2,255); 
     SDL_RenderFillRect(renderer, borderArr[i]);
     SDL_RenderDrawRect(renderer, borderArr[i]);
@@ -128,15 +183,15 @@ void Borders::createObstacles(){
     }    
 }
 
-void Borders::printBorders(){
+bool Borders::printBorders(){
     int totalBorder = get_rect_count();
-    
+    bool gameCont = true;
     createObstacles();
     for (int i = 2; i < totalBorder; i++){
             if(obType[(i-2)/2] == "ob1")
                 type1collision(i);
             else
-                type2collision(i);
+                gameCont = type2collision(i);
         }
     for(int i = 0; i < 2; i++){
             SDL_SetRenderDrawColor(renderer,color1,color2,color3,255); 

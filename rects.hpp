@@ -11,7 +11,7 @@ class Rectangle{
         void initRectangle(SDL_Window* , SDL_Renderer* );
         void setRectangleX();
         void setRectangleY(int);
-        int getRectangle();
+        SDL_Rect getRect();
         void printRect();
         SDL_Surface* load_surface();
         void close();

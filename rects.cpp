@@ -34,10 +34,10 @@ void Rectangle::left(){
         user.x = user.x + userBSpeed;
 }
 
-int Rectangle:: getRectangle(){
-    return user.y;
-    
+SDL_Rect Rectangle::getRect(){
+    return user;
 }
+
 
 SDL_Surface *Rectangle::load_surface(){
     //Load splash image

@@ -6,17 +6,19 @@ using namespace std;
 
 class Borders{
     public:
-        void initBorders(SDL_Window*, SDL_Renderer*);
+        void initBorders(SDL_Window*, SDL_Renderer*, Rectangle &);
         void createBorders();
-        void printBorders();
+        bool printBorders();
         int get_rect_count();
         void createObstacles();
         int random();
         void colors(int &, bool &);
         string objRand();
         void type1collision(int);
-        void type2collision(int);
+        bool type2collision(int);
+        bool checkCollision(SDL_Rect, SDL_Rect*, int);
     private:
+        Rectangle rect;
         SDL_Window* window = nullptr;
         SDL_Renderer* renderer = nullptr;
         int arrSize = 100;
