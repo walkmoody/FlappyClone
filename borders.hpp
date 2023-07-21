@@ -17,7 +17,7 @@ class Borders{
         string objRand();
         void type1collision(int);
         bool type2collision(int);
-        bool checkCollision(SDL_Rect, SDL_Rect*, int);
+        bool checkCollision(SDL_Rect, SDL_Rect* , int);
     private:
         Rectangle rect;
         SDL_Window* window = nullptr;

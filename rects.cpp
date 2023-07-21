@@ -69,7 +69,7 @@ void Rectangle::printRect(){
 
 }
 
-void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
+bool Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
     while (SDL_PollEvent( &windowEvent) != 0){
         switch(windowEvent.type){
             case SDL_KEYDOWN:
@@ -148,7 +148,7 @@ void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
         if(leftPress){
             left();
         }
-        
+        return quit;
 }
 
 

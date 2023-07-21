@@ -85,39 +85,36 @@ bool Borders::checkCollision(SDL_Rect a, SDL_Rect* b, int i)
 
     //Calculate the sides of rect A
     leftA = a.x;
+    cout << a.x << " ";
     rightA = a.x + a.w;
     topA = a.y;
     bottomA = a.y + a.h;
 
-    //Calculate the sides of rect B
+    //Calculate the sides of rect B // hard coded due to funky array behaviour
     leftB = b[i].x;
-    cout << b[i].x << endl;
-    rightB = b[i].x + b[i].w;
+    cout << b[i- 2].x << endl;
+    rightB = b[i].x + 100;
     topB = b[i].y;
     bottomB = b[i].y + b[i].h;
 
-    if( bottomA <= topB )
-    {
-        return false;
+    if( bottomA <= topB ){
+        return true;
     }
 
-    if( topA >= bottomB )
-    {
-        return false;
+    if( topA >= bottomB ){
+        return true;
     }
 
-    if( rightA <= leftB )
-    {
-        return false;
+    if( rightA <= leftB ){
+        return true;
     }
 
-    if( leftA >= rightB )
-    {
-        return false;
+    if( leftA >= rightB ){
+        return true;
     }
 
     //If none of the sides from A are outside B
-    return true;
+    return false;
 }
 
 
@@ -135,31 +132,34 @@ bool Borders::type2collision(int i){
 
     SDL_Rect tempRect = rect.getRect();
     bool collide = checkCollision(tempRect, borderArr[i], i);
-    if (collide == true)
-       return false; 
+    
     SDL_SetRenderDrawColor(renderer,color1, color3, color2,255); 
     SDL_RenderFillRect(renderer, borderArr[i]);
     SDL_RenderDrawRect(renderer, borderArr[i]);
-    return true;
+    return false;
 }
 
 void Borders::createObstacles(){
     if (obstTime1 < 1180){ // fix
         obst1top.h = 200 + randNum; // calculates where the obst will be placed
         obst1top.x = 1080 - obstTime1;
+        cout << "2 " << obst1top.x << " ";
         borderArr[2] = &obst1top;
 
         obst1bottom.y = 375 + randNum;
         obst1bottom.x = 1080 - obstTime1;
+        cout << "3 " << obst1bottom.x << " ";
         borderArr[3] = &obst1bottom;
     }   
     if (obstTime1 < 1681){ // fix
         obst2top.h = 200 + randNum2; // calculates where the obst will be placed
         obst2top.x = 1580 - obstTime1;
+        cout << "4 " << obst2top.x << " ";
         borderArr[4] = &obst2top;
     
         obst2bottom.y = 375 + randNum2;
         obst2bottom.x = 1580 - obstTime1;
+        cout << "5 " << obst2bottom.x << " ";
         borderArr[5] = &obst2bottom;
     }
     else if(obstTime3 > 1680){
@@ -172,10 +172,12 @@ void Borders::createObstacles(){
     if (obstTime3 < 2180){ // fix
         obst3top.h = 200 + randNum3; // calculates where the obst will be placed
         obst3top.x = 2080 - obstTime3;
+        cout << "6 " << obst3top.x << " ";
         borderArr[6] = &obst3top;
 
         obst3bottom.y = 375 + randNum3;
         obst3bottom.x = 2080 - obstTime3;
+        cout << "7 " << obst3bottom.x << " ";
         borderArr[7] = &obst3bottom;
     }
     else{
@@ -187,9 +189,10 @@ void Borders::createObstacles(){
 
 bool Borders::printBorders(){
     int totalBorder = get_rect_count();
-    bool gameCont = true;
+    bool gameCont = false;
     createObstacles();
     for (int i = 2; i < totalBorder; i++){
+        cout << i << " ";
             if(obType[(i-2)/2] == "ob1")
                 type1collision(i);
             else
@@ -199,6 +202,7 @@ bool Borders::printBorders(){
             SDL_SetRenderDrawColor(renderer,color1,color2,color3,255); 
             SDL_RenderFillRect(renderer, borderArr[i]);
             SDL_RenderDrawRect(renderer, borderArr[i]);
+            
         }
 
     colors(color1, color1Up);

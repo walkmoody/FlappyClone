@@ -14,6 +14,7 @@ void Game::gameInit(SDL_Window* window, SDL_Renderer* renderer, SDL_Event &windo
 
 void Game::gameLoop(){
     bool quit = false;
+    bool game_over = false;
     Rectangle rect;
     rect.initRectangle(window,renderer);
     rect.load_surface();
@@ -23,10 +24,11 @@ void Game::gameLoop(){
 
     while (!quit){
             SDL_RenderClear(renderer);
-            rect.rectInput(windowEvent, quit);
+            quit = rect.rectInput(windowEvent, quit);
             rect.setRectangleX();
             
-            quit = border.printBorders();
+            game_over = border.printBorders();
+            cout << game_over << endl;
             rect.printRect();
             
 
