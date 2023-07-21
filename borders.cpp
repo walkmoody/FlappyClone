@@ -75,9 +75,9 @@ string Borders::objRand(){
     else   
         return "ob2";
 }
-bool Borders::checkCollision(SDL_Rect a, int i)
-{
+bool Borders::checkCollision(SDL_Rect a, int i){
     //The sides of the rectangles
+    bool collideTest = false;
     int leftA, leftB;
     int rightA, rightB;
     int topA, topB;
@@ -125,29 +125,32 @@ bool Borders::checkCollision(SDL_Rect a, int i)
     rightB = tempX + 100;
     topB = tempY;
     bottomB = tempY + tempH;
-
-    if( bottomA <= topB ){
+    if(!(leftA > rightB || rightA < leftB || topA > bottomB || bottomA < topB)){
+        collideTest = true;
+    }
+    /*if( bottomA <= topB ){
         cout << "test1";
-        return false;
+        collideTest = false;
     }
 
     if( topA >= bottomB ){
         cout << "test2";
-        return false;
+        collideTest = false;
     }
 
     if( rightA <= leftB ){
         cout << "test3";
-        return false;
+        collideTest = false;
     }
 
     if( leftA >= rightB ){
         cout << "test4";
-        return false;
+        collideTest = false;
     }
+    */
 
     //If none of the sides from A are outside B
-    return true;
+    return collideTest;
 }
 
 
@@ -158,6 +161,7 @@ void Borders::type1collision(int i){
     SDL_SetRenderDrawColor(renderer, color2, color3 , color1,255); 
     SDL_RenderFillRect(renderer, borderArr[i]);
     SDL_RenderDrawRect(renderer, borderArr[i]);
+    cout << collide << "TYPE 1" << endl;
 
 
 }
@@ -165,7 +169,7 @@ bool Borders::type2collision(int i){
 
     SDL_Rect tempRect = rect.getRect();
     bool collide = checkCollision(rect.getRect(), i);
-    
+    cout << collide << "collide" << endl;
     SDL_SetRenderDrawColor(renderer,color1, color3, color2,255); 
     SDL_RenderFillRect(renderer, borderArr[i]);
     SDL_RenderDrawRect(renderer, borderArr[i]);
@@ -224,7 +228,8 @@ bool Borders::printBorders(){
             type1collision(i);
         else
             gameCont = type2collision(i);
-            
+        if (gameCont == true)
+            break;    
         }
     for(int i = 0; i < 2; i++){
             SDL_SetRenderDrawColor(renderer,color1,color2,color3,255); 
