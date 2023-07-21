@@ -34,7 +34,9 @@ void Borders::createBorders(){
 void Borders::initBorders(SDL_Window* window, SDL_Renderer* renderer){
     this->window = window;
     this->renderer = renderer;
-    obstTime = 2281; // allows random nums to generate and resets clock
+    randNum = random();
+    randNum2 = random();
+    randNum3 = random();
     createBorders();
 }
 
@@ -65,40 +67,43 @@ int Borders::random(){
 }
 
 void Borders::createObstacles(){
-    if (obstTime < 1180){ // fix
+    if (obstTime1 < 1180){ // fix
         obst1top.h = 200 + randNum; // calculates where the obst will be placed
-        obst1top.x = 1080 - obstTime;
+        obst1top.x = 1080 - obstTime1;
         borderArr[2] = &obst1top;
 
         obst1bottom.y = 375 + randNum;
-        obst1bottom.x = 1080 - obstTime;
+        obst1bottom.x = 1080 - obstTime1;
         borderArr[3] = &obst1bottom;
-    }
-    if (obstTime < 1680){ // fix
+    }   
+    if (obstTime1 < 1680){ // fix
         obst2top.h = 200 + randNum2; // calculates where the obst will be placed
-        obst2top.x = 1580 - obstTime;
+        obst2top.x = 1580 - obstTime1;
         borderArr[4] = &obst2top;
     
         obst2bottom.y = 375 + randNum2;
-        obst2bottom.x = 1580 - obstTime;
+        obst2bottom.x = 1580 - obstTime1;
         borderArr[5] = &obst2bottom;
     }
-    if (obstTime < 2180){ // fix
+    else if(obstTime3 > 1680){
+        obstTime1 = 0;
+        randNum2 = random();
+        randNum = random();
+        reset = true;
+     }
+    if (obstTime3 < 2180){ // fix
         obst3top.h = 200 + randNum3; // calculates where the obst will be placed
-        obst3top.x = 2080 - obstTime;
+        obst3top.x = 2080 - obstTime3;
         borderArr[6] = &obst3top;
 
         obst3bottom.y = 375 + randNum3;
-        obst3bottom.x = 2080 - obstTime;
+        obst3bottom.x = 2080 - obstTime3;
         borderArr[7] = &obst3bottom;
     }
     else{
-        obstTime = 0;
-        randNum = random();
-        randNum2 = random();
+        obstTime3 = 0;
         randNum3 = random();
-    }
-    
+    }    
 }
 
 void Borders::printBorders(){
@@ -113,5 +118,7 @@ void Borders::printBorders(){
     colors(color1, color1Up);
     colors(color2, color2Up);
     colors(color3, color3Up);
-    obstTime+= 3;
+    obstTime1+= 3;
+    obstTime2+= 3;
+    obstTime3+= 3;
 }

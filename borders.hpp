@@ -32,7 +32,10 @@ class Borders{
         bool color1Up = true;
         bool color2Up = false;
         bool color3Up = true;
-        int obstTime = 0;
+        bool reset = false;
+        int obstTime1 = 0;
+        int obstTime2 = 0;
+        int obstTime3 = 0;
         int randNum = 0;
         int randNum2 = 0;
         int randNum3 =0;
