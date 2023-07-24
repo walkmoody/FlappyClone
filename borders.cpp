@@ -119,16 +119,25 @@ bool Borders::checkCollision(SDL_Rect a, int i){
     rightA = a.x + a.w;
     topA = a.y;
     bottomA = a.y + a.h;
-
+    cout << leftA << " " << rightA << " " << topA << " " << bottomA << endl;
     //Calculate the sides of rect B 
     leftB = tempX;
     rightB = tempX + 100;
     topB = tempY;
     bottomB = tempY + tempH;
-    if(!(leftA > rightB || rightA < leftB || topA > bottomB || bottomA < topB)){
-        collideTest = true;
+    // left A is the left side of the player 
+    // right B is the right side of the obsticle
+    if (i % 2 == 0){ // TOP (AKA odd i)
+        if(rightA > leftB && rightB > leftA && (bottomB < bottomA && bottomB > topA))
+            collideTest = true;
+            cout << "COLLIDED" << endl;
     }
-    /*if( bottomA <= topB ){
+    else {
+        if(rightA > leftB && rightB > leftA && (topB > bottomA))
+            collideTest = true;  
+    }
+              /*if( bottomA <= topB ){
+    }
         cout << "test1";
         collideTest = false;
     }
@@ -154,23 +163,21 @@ bool Borders::checkCollision(SDL_Rect a, int i){
 }
 
 
-void Borders::type1collision(int i){
+void Borders::type1collision(int i, SDL_Rect tempRect){
     
-    SDL_Rect tempRect = rect.getRect();
+    tempRect = rect.getRect();
     bool collide = checkCollision(tempRect, i);
     SDL_SetRenderDrawColor(renderer, color2, color3 , color1,255); 
     SDL_RenderFillRect(renderer, borderArr[i]);
     SDL_RenderDrawRect(renderer, borderArr[i]);
-    cout << collide << "TYPE 1" << endl;
-
+    
 
 }
-bool Borders::type2collision(int i){
+bool Borders::type2collision(int i, SDL_Rect tempRect){
 
-    SDL_Rect tempRect = rect.getRect();
+    tempRect = rect.getRect();
     bool collide = checkCollision(rect.getRect(), i);
-    cout << collide << "collide" << endl;
-    SDL_SetRenderDrawColor(renderer,color1, color3, color2,255); 
+    SDL_SetRenderDrawColor(renderer,255, 0, 0,255); 
     SDL_RenderFillRect(renderer, borderArr[i]);
     SDL_RenderDrawRect(renderer, borderArr[i]);
     return collide;
@@ -218,16 +225,16 @@ void Borders::createObstacles(){
     }    
 }
 
-bool Borders::printBorders(){
+bool Borders::printBorders(SDL_Rect tempRect){
     int totalBorder = get_rect_count();
     createObstacles();
     for (int i = 2; i < totalBorder; i++){
         if (gameCont == true)
             break;
         if(obType[(i-2)/2] == "ob1")
-            type1collision(i);
+            type1collision(i, tempRect);
         else
-            gameCont = type2collision(i);
+            gameCont = type2collision(i, tempRect);
         if (gameCont == true)
             break;    
         }
@@ -235,7 +242,6 @@ bool Borders::printBorders(){
             SDL_SetRenderDrawColor(renderer,color1,color2,color3,255); 
             SDL_RenderFillRect(renderer, borderArr[i]);
             SDL_RenderDrawRect(renderer, borderArr[i]);
-            
         }
 
     colors(color1, color1Up);

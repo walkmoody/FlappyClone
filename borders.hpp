@@ -9,14 +9,14 @@ class Borders{
     public:
         void initBorders(SDL_Window*, SDL_Renderer*, Rectangle &);
         void createBorders();
-        bool printBorders();
+        bool printBorders(SDL_Rect);
         int get_rect_count();
         void createObstacles();
         int random();
         void colors(int &, bool &);
         string objRand();
-        void type1collision(int);
-        bool type2collision(int);
+        void type1collision(int, SDL_Rect);
+        bool type2collision(int, SDL_Rect);
         bool checkCollision(SDL_Rect, int);
     private:
         Rectangle rect;

@@ -26,9 +26,9 @@ void Game::gameLoop(){
             SDL_RenderClear(renderer);
             quit = rect.rectInput(windowEvent, quit);
             rect.setRectangleX();
-            
-            game_over = border.printBorders();
-            cout << game_over << endl;
+            SDL_Rect tempRect = rect.getRect();
+            cout << tempRect.y << endl;
+            game_over = border.printBorders(tempRect);
             rect.printRect();
             
 
