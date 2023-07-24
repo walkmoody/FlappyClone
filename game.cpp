@@ -2,7 +2,7 @@
 #include <SDL2/SDL.h>
 #include <vector>
 #include "game.hpp"
-#include "rects.hpp"
+//#include "rects.hpp"
 #include "borders.hpp"
 
 void Game::gameInit(SDL_Window* window, SDL_Renderer* renderer, SDL_Event &windowEvent){
@@ -14,22 +14,25 @@ void Game::gameInit(SDL_Window* window, SDL_Renderer* renderer, SDL_Event &windo
 
 void Game::gameLoop(){
     bool quit = false;
+    bool game_over = false;
     Rectangle rect;
     rect.initRectangle(window,renderer);
     rect.load_surface();
     Borders border;
-    border.initBorders(window, renderer);
+    border.initBorders(window, renderer, rect);
 
 
     while (!quit){
             SDL_RenderClear(renderer);
-            rect.rectInput(windowEvent, quit);
+            quit = rect.rectInput(windowEvent, quit);
             rect.setRectangleX();
-
+            
+            game_over = border.printBorders();
+            cout << game_over << endl;
             rect.printRect();
-            border.printBorders();
+            
 
-            SDL_SetRenderDrawColor (renderer, 10, 10, 10,255);
+            SDL_SetRenderDrawColor(renderer, 10, 10, 10,255);
 
             SDL_RenderPresent(renderer);
             SDL_Delay(1000/FPS);      

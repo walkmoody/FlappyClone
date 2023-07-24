@@ -1,17 +1,18 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <vector>
+
 //#include "rects.cpp"
 
 using namespace std;
 
 class Rectangle{
     public:
-        void rectInput(SDL_Event &, bool &);
+        bool rectInput(SDL_Event &, bool &);
         void initRectangle(SDL_Window* , SDL_Renderer* );
         void setRectangleX();
         void setRectangleY(int);
-        int getRectangle();
+        SDL_Rect getRect();
         void printRect();
         SDL_Surface* load_surface();
         void close();
@@ -32,3 +33,4 @@ class Rectangle{
         SDL_Renderer* renderer = nullptr;
         SDL_Texture* texture = nullptr;
 };
+

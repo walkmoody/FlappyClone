@@ -2,7 +2,8 @@
 #include <SDL2/SDL.h>
 #include <vector>
 #include "rects.hpp"
-
+#ifndef RECTS_HPP
+#define RECTS_HPP
 
 void Rectangle::initRectangle(SDL_Window* window, SDL_Renderer* renderer){
     user.w = 50;
@@ -25,8 +26,9 @@ void Rectangle::setRectangleY(int input){
 
 void Rectangle::right(){
     user.x = user.x + userFSpeed;
-        if (user.x > 1080) // width of screen
-        user.x = user.x - userFSpeed;
+        if (user.x > 1080 - user.w) // width of screen
+            user.x = user.x - userFSpeed;
+    cout << user.x << endl;
 }
 void Rectangle::left(){
     user.x = user.x - userBSpeed;
@@ -34,10 +36,10 @@ void Rectangle::left(){
         user.x = user.x + userBSpeed;
 }
 
-int Rectangle:: getRectangle(){
-    return user.y;
-    
+SDL_Rect Rectangle::getRect(){
+    return user;
 }
+
 
 SDL_Surface *Rectangle::load_surface(){
     //Load splash image
@@ -68,7 +70,7 @@ void Rectangle::printRect(){
 
 }
 
-void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
+bool Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
     while (SDL_PollEvent( &windowEvent) != 0){
         switch(windowEvent.type){
             case SDL_KEYDOWN:
@@ -117,8 +119,12 @@ void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
                     break;
                     
             }
-            if( windowEvent.type == SDL_QUIT )
-                quit = true;
+            break;
+        case SDL_QUIT:
+            quit = true;
+            break;
+        default:
+            break;
         }
     }
         if (down){
@@ -143,5 +149,8 @@ void Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
         if(leftPress){
             left();
         }
-        
+        return quit;
 }
+
+
+#endif // RECTS_HPP
