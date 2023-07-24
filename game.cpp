@@ -13,7 +13,7 @@ void Game::gameInit(SDL_Window* window, SDL_Renderer* renderer, SDL_Event &windo
 
 }
 
-void Game::gameLoop(){
+std::string Game::gameLoop(){
     bool quit = false;
     bool gameOver = false;
     string borderOut = "";
@@ -27,7 +27,7 @@ void Game::gameLoop(){
            
             borderOut = border.printBorders();
             if(borderOut == "quit")
-                quit = true;
+                return "quit";
             if(borderOut == "gameOver")
                 gameOver = true;
 
@@ -40,7 +40,8 @@ void Game::gameLoop(){
                 quit = true;
                 border.closeRect();
             }
+            
             SDL_Delay(1000/FPS);      
             }
-   
+    return "menu";
 }

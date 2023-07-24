@@ -68,13 +68,14 @@ void Rectangle::close(){
 }
 
 void Rectangle::printRect(){
-    SDL_SetRenderDrawColor(renderer,255,0,0,255); // red border
+    SDL_SetRenderDrawColor(renderer,255,100, 120,255); // red border 255 0 0 
     //SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0, 0, 0));
-    //SDL_BlitSurface(charSprite, NULL, screenSurface, &user);
-
+    
     //SDL_BlitSurface(screenSurface, &user, charSprite, &user);
     SDL_RenderFillRect(renderer, &user);
     SDL_RenderDrawRect(renderer, &user);
+    //SDL_BlitSurface(charSprite, NULL, screenSurface, &user);
+    //SDL_UpdateWindowSurface( window );
 
 }
 

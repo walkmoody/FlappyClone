@@ -241,6 +241,7 @@ string Borders::printBorders(){
         }
 
     rect.printRect();
+    
 
     colors(color1, color1Up);
     colors(color2, color2Up);

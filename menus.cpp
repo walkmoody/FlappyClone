@@ -94,8 +94,7 @@ string Menus::mainMenu(){
 string Menus::game_screen(){
     Game mainGame;
     mainGame.gameInit(window, renderer, windowEvent);
-    mainGame.gameLoop();
-    return "menu";
+    return mainGame.gameLoop();
 }
 
 string Menus::instructions(){

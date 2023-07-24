@@ -6,7 +6,7 @@ using namespace std;
 
 class Game{
     public:
-        void gameLoop();
+        string gameLoop();
         void gameInit(SDL_Window* , SDL_Renderer* , SDL_Event &);
     private:
         SDL_Window* window = nullptr;
