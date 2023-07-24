@@ -24,6 +24,14 @@ void Rectangle::setRectangleY(int input){
     user.y = user.y + input;
 }
 
+int Rectangle::getRectangleX(){
+    return user.x;
+}
+
+int Rectangle::getRectangleY(){
+    return user.y;
+}
+
 void Rectangle::right(){
     user.x = user.x + userFSpeed;
         if (user.x > 1080 - user.w) // width of screen
