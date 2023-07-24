@@ -9,6 +9,7 @@ void Game::gameInit(SDL_Window* window, SDL_Renderer* renderer, SDL_Event &windo
     this->window = window;
     this->renderer = renderer;
     this->windowEvent = windowEvent;
+    count = 0;
 
 }
 
@@ -31,8 +32,14 @@ void Game::gameLoop(){
                 gameOver = true;
 
             SDL_SetRenderDrawColor(renderer, 10, 10, 10,255); // window background
-
-            SDL_RenderPresent(renderer);
+            if (gameOver == false)
+                SDL_RenderPresent(renderer);
+            else if (gameOver == true)
+                count++;
+            if (count == 100){
+                quit = true;
+                border.closeRect();
+            }
             SDL_Delay(1000/FPS);      
             }
    

@@ -12,7 +12,7 @@ class Game{
         SDL_Window* window = nullptr;
         SDL_Renderer* renderer = nullptr;
         SDL_Event windowEvent;
+        int count;
         const int FPS = 60;
-
 };
 

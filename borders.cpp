@@ -64,6 +64,10 @@ void Borders::colors(int &color, bool &colorUp){
         color--;
 
 }
+void Borders::closeRect(){
+    rect.close();
+}
+
 int Borders::random(){
     int low = 0, high = 170, newNum;
     newNum = (rand() % (low - high)) + low;
@@ -237,8 +241,7 @@ string Borders::printBorders(){
         }
 
     rect.printRect();
-    if (gameCont == true)
-    SDL_Delay(1000);
+
     colors(color1, color1Up);
     colors(color2, color2Up);
     colors(color3, color3Up);

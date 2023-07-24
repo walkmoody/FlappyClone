@@ -14,6 +14,7 @@ class Borders{
         void createObstacles();
         int random();
         void colors(int &, bool &);
+        void closeRect();
         string objRand();
         bool type1collision(int);
         bool type2collision(int);

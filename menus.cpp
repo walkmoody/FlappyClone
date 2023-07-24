@@ -95,7 +95,7 @@ string Menus::game_screen(){
     Game mainGame;
     mainGame.gameInit(window, renderer, windowEvent);
     mainGame.gameLoop();
-    return "quit";
+    return "menu";
 }
 
 string Menus::instructions(){
