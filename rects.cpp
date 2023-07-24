@@ -26,8 +26,9 @@ void Rectangle::setRectangleY(int input){
 
 void Rectangle::right(){
     user.x = user.x + userFSpeed;
-        if (user.x > 1080) // width of screen
-        user.x = user.x - userFSpeed;
+        if (user.x > 1080 - user.w) // width of screen
+            user.x = user.x - userFSpeed;
+    cout << user.x << endl;
 }
 void Rectangle::left(){
     user.x = user.x - userBSpeed;
