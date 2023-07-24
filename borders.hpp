@@ -7,21 +7,22 @@ using namespace std;
 
 class Borders{
     public:
-        void initBorders(SDL_Window*, SDL_Renderer*, Rectangle &);
+        void initBorders(SDL_Window*, SDL_Renderer*,  SDL_Event &);
         void createBorders();
-        bool printBorders(SDL_Rect);
+        string printBorders();
         int get_rect_count();
         void createObstacles();
         int random();
         void colors(int &, bool &);
         string objRand();
-        void type1collision(int, SDL_Rect);
-        bool type2collision(int, SDL_Rect);
-        bool checkCollision(SDL_Rect, int);
+        bool type1collision(int);
+        bool type2collision(int);
+        bool checkCollision(int);
     private:
         Rectangle rect;
         SDL_Window* window = nullptr;
         SDL_Renderer* renderer = nullptr;
+        SDL_Event windowEvent;
         int arrSize = 100;
         SDL_Rect *borderArr[100] = {};
         SDL_Rect top;
@@ -45,6 +46,7 @@ class Borders{
         int randNum2 = 0;
         int randNum3 =0;
         bool gameCont = false;
+        bool collideTest = false;
         std::string obType[3] ={"ob1", "ob1", "ob1"};
 
 };

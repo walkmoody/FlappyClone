@@ -14,28 +14,26 @@ void Game::gameInit(SDL_Window* window, SDL_Renderer* renderer, SDL_Event &windo
 
 void Game::gameLoop(){
     bool quit = false;
-    bool game_over = false;
-    Rectangle rect;
-    rect.initRectangle(window,renderer);
-    rect.load_surface();
+    bool gameOver = false;
+    string borderOut = "";
+
     Borders border;
-    border.initBorders(window, renderer, rect);
+    border.initBorders(window, renderer, windowEvent);
 
 
     while (!quit){
             SDL_RenderClear(renderer);
-            quit = rect.rectInput(windowEvent, quit);
-            rect.setRectangleX();
-            SDL_Rect tempRect = rect.getRect();
-            cout << tempRect.y << endl;
-            game_over = border.printBorders(tempRect);
-            rect.printRect();
-            
+           
+            borderOut = border.printBorders();
+            if(borderOut == "quit")
+                quit = true;
+            if(borderOut == "gameOver")
+                gameOver = true;
 
-            SDL_SetRenderDrawColor(renderer, 10, 10, 10,255);
+            SDL_SetRenderDrawColor(renderer, 10, 10, 10,255); // window background
 
             SDL_RenderPresent(renderer);
             SDL_Delay(1000/FPS);      
             }
-    rect.close();
+   
 }
