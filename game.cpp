@@ -24,8 +24,8 @@ std::string Game::gameLoop(){
 
     while (!quit){
             SDL_RenderClear(renderer);
-           
-            borderOut = border.printBorders();
+            if (borderOut == "")
+                borderOut = border.printBorders();
             if(borderOut == "quit")
                 return "quit";
             if(borderOut == "gameOver")

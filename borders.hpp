@@ -46,6 +46,11 @@ class Borders{
         int randNum = 0;
         int randNum2 = 0;
         int randNum3 =0;
+        int score;
+        int speed = 0;
+        bool obst1Count = false;
+        bool obst2Count = false;
+        bool obst3Count = false;
         bool gameCont = false;
         bool collideTest = false;
         std::string obType[3] ={"ob1", "ob1", "ob1"};
