@@ -1,6 +1,6 @@
 #include <iostream>
 #include <SDL2/SDL.h>
-//#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_ttf.h>
 #include <vector>
 
 using namespace std;
@@ -8,7 +8,7 @@ class Menus{
 
     public:
         
-        void menusInit(SDL_Window*, SDL_Renderer*, SDL_Event &, SDL_Surface*);
+        void menusInit(SDL_Window*, SDL_Renderer*, SDL_Event &, SDL_Surface*, TTF_Font*);
         string splash();
         string mainMenu();
         string game_screen();
@@ -25,10 +25,13 @@ class Menus{
         SDL_Event windowEvent;
         SDL_Surface* screenSurface = nullptr;
         SDL_Surface* test = nullptr;
+        SDL_Texture* Message = nullptr;
         SDL_Texture* texture = nullptr;
+        SDL_Rect Message_rect;
         SDL_Rect viewport;
-        //TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 24); //TODO figure out fonts
+        TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 24);
         SDL_Color White = {255, 255, 255};
+        SDL_Color Black = {10, 10, 10};
         const int FPS = 60;
 };
 
