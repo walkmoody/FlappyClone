@@ -41,6 +41,10 @@ void Borders::initBorders(SDL_Window* window, SDL_Renderer* renderer, SDL_Event 
     randNum = random();
     randNum2 = random();
     randNum3 = random();
+    score = 0;
+    obst1Count = false;
+    obst2Count = false;
+    obst3Count = false;
     createBorders();
 }
 
@@ -125,7 +129,7 @@ bool Borders::checkCollision(int i){
     topA =  rect.getRectangleY();
     bottomA = rect.getRectangleY()+ 50;
 
-    cout << leftA << " " << rightA << " " << topA << " " << bottomA << endl;
+    //cout << leftA << " " << rightA << " " << topA << " " << bottomA << endl;
     //Calculate the sides of rect B 
     leftB = tempX;
     rightB = tempX + 100;
@@ -177,7 +181,10 @@ void Borders::createObstacles(){
         obst1top.h = 200 + randNum; // calculates where the obst will be placed
         obst1top.x = 1080 - obstTime1;
         borderArr[2] = &obst1top;
-
+        if (rect.getRectangleX() > obst1top.x + 50 && obst1Count == false){
+            score++;
+            obst1Count = true;
+        }
         obst1bottom.y = 375 + randNum;
         obst1bottom.x = 1080 - obstTime1;
         borderArr[3] = &obst1bottom;
@@ -186,6 +193,10 @@ void Borders::createObstacles(){
         obst2top.h = 200 + randNum2; // calculates where the obst will be placed
         obst2top.x = 1580 - obstTime1;
         borderArr[4] = &obst2top;
+        if (rect.getRectangleX() > obst2top.x + 50 && obst2Count == false){
+            score++;
+            obst2Count = true;
+        }
     
         obst2bottom.y = 375 + randNum2;
         obst2bottom.x = 1580 - obstTime1;
@@ -193,6 +204,8 @@ void Borders::createObstacles(){
     }
     else if(obstTime3 > 1680){
         obstTime1 = 0;
+        obst1Count = false;
+        obst2Count = false;
         randNum2 = random();
         randNum = random();
         obType[0] = objRand();
@@ -202,13 +215,17 @@ void Borders::createObstacles(){
         obst3top.h = 200 + randNum3; // calculates where the obst will be placed
         obst3top.x = 2080 - obstTime3;
         borderArr[6] = &obst3top;
-
+        if (rect.getRectangleX() > obst3top.x + 50 && obst3Count == false){
+            score++;
+            obst3Count = true;
+        }
         obst3bottom.y = 375 + randNum3;
         obst3bottom.x = 2080 - obstTime3;
         borderArr[7] = &obst3bottom;
     }
     else{
         obstTime3 = 0;
+        obst3Count = false;
         randNum3 = random();
         obType[2] = objRand();
     }    
@@ -224,6 +241,7 @@ string Borders::printBorders(){
     //rect.setRectangleX();
     int totalBorder = get_rect_count();
     createObstacles();
+    cout << "SCORE: " << score << endl;
     for (int i = 2; i < totalBorder; i++){
         if (gameCont == true)
             break;

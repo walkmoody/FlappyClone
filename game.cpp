@@ -24,17 +24,17 @@ std::string Game::gameLoop(){
 
     while (!quit){
             SDL_RenderClear(renderer);
-           
-            borderOut = border.printBorders();
+            if (borderOut == "")
+                borderOut = border.printBorders();
             if(borderOut == "quit")
                 return "quit";
             if(borderOut == "gameOver")
                 gameOver = true;
 
             SDL_SetRenderDrawColor(renderer, 10, 10, 10,255); // window background
-            if (gameOver == false)
+            if (gameOver == false || count == 0 )
                 SDL_RenderPresent(renderer);
-            else if (gameOver == true)
+            if (gameOver == true)
                 count++;
             if (count == 100){
                 quit = true;
