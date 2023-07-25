@@ -32,9 +32,9 @@ std::string Game::gameLoop(){
                 gameOver = true;
 
             SDL_SetRenderDrawColor(renderer, 10, 10, 10,255); // window background
-            if (gameOver == false || count == 0 )
+            if (gameOver == false)
                 SDL_RenderPresent(renderer);
-            if (gameOver == true)
+            else if (gameOver == true)
                 count++;
             if (count == 100){
                 quit = true;

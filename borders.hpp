@@ -47,6 +47,7 @@ class Borders{
         int randNum2 = 0;
         int randNum3 =0;
         int score;
+        int speed = 0;
         bool obst1Count = false;
         bool obst2Count = false;
         bool obst3Count = false;

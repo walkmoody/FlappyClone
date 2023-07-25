@@ -42,6 +42,7 @@ void Borders::initBorders(SDL_Window* window, SDL_Renderer* renderer, SDL_Event 
     randNum2 = random();
     randNum3 = random();
     score = 0;
+    speed = 0;
     obst1Count = false;
     obst2Count = false;
     obst3Count = false;
@@ -264,9 +265,21 @@ string Borders::printBorders(){
     colors(color1, color1Up);
     colors(color2, color2Up);
     colors(color3, color3Up);
-    obstTime1+= 3;
-    obstTime2+= 3;
-    obstTime3+= 3;
+    if (score > 3){
+        speed = 2;
+    }
+    if (score > 6){
+        speed = 3;
+    }
+    if (score > 10){
+        speed = 4;
+    }
+    if (score > 15){
+        speed = 5;
+    }
+    obstTime1+= 3 + speed;
+    obstTime2+= 3 + speed;
+    obstTime3+= 3 + speed;
     if (gameCont ==  true)
         return "gameOver";
     else 
