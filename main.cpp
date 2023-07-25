@@ -17,6 +17,8 @@ int main( int argc, char *argv[]){
     SDL_Surface* screenSurface = nullptr;
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer);
+    TTF_Init();
+    TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 24);
     SDL_SetWindowTitle(window, "FUN GAME"); // Change title here
     SDL_RenderPresent( renderer );
     SDL_Event windowEvent;
@@ -29,7 +31,7 @@ int main( int argc, char *argv[]){
     bool looping = true;
     string screen = "splash";
     Menus mainMenu;
-    mainMenu.menusInit(window, renderer, windowEvent, screenSurface);
+    mainMenu.menusInit(window, renderer, windowEvent, screenSurface, Sans);
 
     while (looping){
         while (SDL_PollEvent( &windowEvent) != 0){
@@ -55,7 +57,7 @@ int main( int argc, char *argv[]){
         else
             break;
     }
-
+    TTF_Quit();
     SDL_DestroyRenderer(renderer);    
     SDL_DestroyWindow (window);
     SDL_Quit();

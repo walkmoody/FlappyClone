@@ -36,7 +36,7 @@ std::string Game::gameLoop(){
                 SDL_RenderPresent(renderer);
             else if (gameOver == true)
                 count++;
-            if (count == 100){
+            if (count == 30){
                 quit = true;
                 border.closeRect();
             }
