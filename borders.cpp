@@ -265,21 +265,23 @@ string Borders::printBorders(){
     colors(color1, color1Up);
     colors(color2, color2Up);
     colors(color3, color3Up);
-    if (score > 3){
+    if (score > -1)
+        speed = 0;
+    if (score > 3)
+        speed = 1;
+    if (score > 6)
         speed = 2;
-    }
-    if (score > 6){
+    if (score > 10)
         speed = 3;
-    }
-    if (score > 10){
+    if (score > 15)
         speed = 4;
-    }
-    if (score > 15){
+    if (score > 20)
         speed = 5;
-    }
-    obstTime1+= 3 + speed;
-    obstTime2+= 3 + speed;
-    obstTime3+= 3 + speed;
+    if (score > 29)
+        speed = 6;
+    obstTime1+= 15 + speed;
+    obstTime2+= 15 + speed;
+    obstTime3+= 15 + speed;
     if (gameCont ==  true)
         return "gameOver";
     else 
