@@ -107,7 +107,7 @@ bool Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
             }
             break;
         case SDL_KEYUP:
-            switch(windowEvent.key.keysym.sym){
+            switch(windowEvent.key.keysym.sym){ // movement is bool based
                 case SDLK_SPACE:
                     down = false;
                     break;
