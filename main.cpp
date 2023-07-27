@@ -19,7 +19,7 @@ int main( int argc, char *argv[]){
     SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer);
     TTF_Init();
     TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 24);
-    SDL_SetWindowTitle(window, "Girlfriend Practice"); // Change title here
+    SDL_SetWindowTitle(window, "Fun Game"); // Change title here
     SDL_RenderPresent( renderer );
     SDL_Event windowEvent;
 
