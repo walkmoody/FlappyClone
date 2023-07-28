@@ -31,7 +31,7 @@ class Menus{
         SDL_Rect viewport;
         TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 24);
         SDL_Color White = {255, 255, 255};
-        SDL_Color Black = {10, 10, 10};
+        SDL_Color Black = {0, 10, 10};
         const int FPS = 60;
 };
 

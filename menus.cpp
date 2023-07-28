@@ -28,8 +28,8 @@ bool Menus::loadMedia(){
     Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
     SDL_FreeSurface(surfaceMessage);
     surfaceMessage = nullptr;
-    Message_rect.x = 0;  //controls the rect's x coordinate 
-    Message_rect.y = 0; // controls the rect's y coordinte
+    Message_rect.x = 100;  //controls the rect's x coordinate 
+    Message_rect.y = 100; // controls the rect's y coordinte
     Message_rect.w = 100; // controls the width of the rect
     Message_rect.h = 100;
 
@@ -54,10 +54,11 @@ void Menus::close(){
 }
 
 string Menus::splash(){
+    //SDL_RenderSetViewport(renderer, &viewport);
     SDL_SetRenderDrawColor(renderer, 100, 100, 100, 255);
     SDL_RenderClear(renderer);
     SDL_RenderCopy(renderer, texture, nullptr, nullptr);
-    SDL_RenderSetViewport(renderer, &viewport);
+    
     SDL_RenderPresent(renderer);
     SDL_Delay(1000/FPS);      
 
@@ -91,11 +92,15 @@ string Menus::mainMenu(){
             
 
             SDL_RenderClear(renderer);
-            SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-            SDL_RenderCopy(renderer, texture, nullptr, nullptr);
-            SDL_RenderSetViewport(renderer, &viewport);
-            SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
             
+            SDL_SetRenderDrawColor(renderer, 2, 0, 3, 255);
+           
+            SDL_RenderCopy(renderer, texture, nullptr, nullptr);
+            SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
+            //SDL_RenderSetViewport(renderer, &viewport);
+            SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
+            SDL_RenderFillRect(renderer, &Message_rect);
+            SDL_SetRenderDrawColor(renderer, 255, 0, 3, 255);
             SDL_RenderPresent(renderer);
             SDL_Delay(1000/FPS);      
     

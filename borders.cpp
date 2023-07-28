@@ -144,7 +144,6 @@ bool Borders::checkCollision(int i){
         if((rightA > leftB && !(leftA > rightB)) && (bottomB > topA)){
             cout << leftB << " " << rightB << " " << topB << " " << bottomB << endl;
             collideTest = true;
-            cout << "COLLIDED TRUE" << endl;
         }
     }
     else if (i % 2 == 1){
