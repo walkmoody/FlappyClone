@@ -177,7 +177,7 @@ bool Borders::type2collision(int i){
 }
 
 void Borders::createObstacles(){
-    if (obstTime1 < 1180){ // fix
+    if (obstTime1 < 1280){ // fix
         obst1top.h = 200 + randNum; // calculates where the obst will be placed
         obst1top.x = 1080 - obstTime1;
         borderArr[2] = &obst1top;
