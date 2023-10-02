@@ -54,5 +54,4 @@ class Borders{
         bool gameCont = false;
         bool collideTest = false;
         std::string obType[3] ={"ob1", "ob1", "ob1"};
-
 };

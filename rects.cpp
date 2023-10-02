@@ -78,11 +78,11 @@ void Rectangle::printRect(){
 
 }
 
-bool Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){
+bool Rectangle::rectInput(SDL_Event &windowEvent, bool &quit){ // Calculutes all of the inputs as well as the movement
     while (SDL_PollEvent( &windowEvent) != 0){
         switch(windowEvent.type){
             case SDL_KEYDOWN:
-                switch(windowEvent.key.keysym.sym)
+                switch(windowEvent.key.keysym.sym) // Uses booleans to keep track
                 {
                     case SDLK_ESCAPE:
                         quit = true;
